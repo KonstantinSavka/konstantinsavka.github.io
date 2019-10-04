@@ -360,7 +360,7 @@ label {
           transform: rotate(-45deg); }
 
 .burger-menu__nav {
-  z-index: 20;
+  z-index: 1;
   position: absolute;
   display: -webkit-box;
   display: -webkit-flex;
@@ -625,7 +625,7 @@ label {
   margin-bottom: 10px; }
 
 @media (max-width: 1030px) {
-  .fafa-star {
+  .fa-star {
     font-size: 0.7rem; } }
 
 .column-1__newsletters {
