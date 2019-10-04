@@ -402,18 +402,6 @@ label {
   -webkit-filter: brightness(0.7);
           filter: brightness(0.7); }
 
-.burger-menu__overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10; }
-
-.burger-menu_active .burger-menu__overlay {
-  display: block; }
-
 .main-menu {
   display: -webkit-box;
   display: -webkit-flex;

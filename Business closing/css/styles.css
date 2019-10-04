@@ -985,7 +985,8 @@ li {
   font: var(--roboto-r);
   letter-spacing: 0.07rem;
   padding-left: 30px;
-  position: relative; }
+  position: relative;
+  color: white; }
 
 .info__list a::before {
   position: absolute;

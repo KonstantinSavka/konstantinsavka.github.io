@@ -163,7 +163,8 @@ header {
 .desc {
 	color: white;
 	font: var(--l-font);
-	margin: 15px 300px 50px 300px;
+	margin: 15px auto 50px auto;
+	padding: 0 5px;
 }
 
 .start {
@@ -950,6 +951,10 @@ footer .wrapper {
 	border-right: 1px solid #252525;
 	font: var(--l-font);
 	text-decoration: none;
+}
+
+.credits {
+	text-align: center;
 }
 
 .credits a {

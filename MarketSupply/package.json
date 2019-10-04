@@ -1,12 +1,12 @@
 {
-  "name": "master-file-windows",
+  "name": "test",
   "version": "1.0.0",
-  "description": "master file",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Savka",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.26.7",

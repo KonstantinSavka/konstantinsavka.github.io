@@ -8,21 +8,21 @@ function style() {
     .pipe(sass().on('error', sass.logError))
     .pipe(sass())
     .pipe(autoprefixer({
-        overrideBrowserslist: ['last 10 versions']
+      overrideBrowserslist: ['last 10 versions']
 }))
     .pipe(gulp.dest('./css'))
     .pipe(browserSync.stream());
 }
 
 function watch() {
-    browserSync.init ({
-       server: {
-           baseDir: './'
-       } 
-    });
-    gulp.watch('./scss/**/*.scss', style);
-    gulp.watch('./*.html').on('change', browserSync.reload);
-    gulp.watch('./js/**/*.js').on('change', browserSync.reload);
+   browserSync.init({
+     server: {
+         baseDir: './'
+     }  
+   });
+   gulp.watch('./scss/**/*.scss', style);
+   gulp.watch('./*.html').on('change', browserSync.reload);
+   gulp.watch('./js/**/*.js').on('change', browserSync.reload);
 }
 
 exports.style = style;
