@@ -948,11 +948,12 @@ hr {
 
 .blog__item {
     width: 31%;
+    position: relative;
 }
 
 .blog__header {
-    position: relative;
     margin-bottom: 14px;
+    overflow: hidden;
 }
 
 .blog__photo {
@@ -963,7 +964,7 @@ hr {
 }
 
 .blog__photo:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .blog__date {
@@ -978,7 +979,7 @@ hr {
     text-align: center;
 
     position: absolute;
-    bottom: 10px;
+    bottom: 190px;
     left: -10px;
     z-index: 1;
 }
