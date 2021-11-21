@@ -1,0 +1,31 @@
+* {
+    font-family: "Arial";
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+.accordion {
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+}
+
+.accordion-item {
+    border: 1px solid blueviolet;
+}
+
+.item-header {
+    line-height: 24px;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.item-content.hidden {
+    display: none;
+}
