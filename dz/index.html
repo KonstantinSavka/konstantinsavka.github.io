@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="api.js" defer></script>
+    <script src="helpers.js" defer></script>
+    <script src="login.js" defer></script>
+    <script src="users.js" defer></script>
+    <script src="main.js" defer></script>
+    <style>
+
+        * {
+            font-family: 'Arial';
+        }
+
+        .member-card {
+            border: 1px solid #000;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            margin-right: 15px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: fit-content;
+            align-items: center;
+        }
+        .actions-container {
+            display: flex;
+        }
+        .edit-form {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main">
+    </div>
+
+    <script id="user-list-template" type="text/template">
+        <!-- <form class="edit-form" id="form" action="">
+            <input id="newName" placeholder="Name" type="text">
+            <input id="newJob" placeholder="Job" type="text">
+            <button id="editFormBtn" type="submit">Send</button>
+        </form> -->
+        <div class="list-container" id='user-list'>
+        </div>
+        <div class="actions-container">
+            <button id="action-prev"><</button>
+            <div class="pages" id="pages"></div>
+            <button id="action-next">></button>
+        </div>
+    </script>
+
+    <script id="login-template" type="text/template">
+        <form id="login-form" action="">
+            <input id="email_field" type="email" placeholder="Email">
+            <input id="password_field" type="password" placeholder="Password">
+            <button id="loginFormSubmit" class="buttonSend" type="button">Log in</button>
+        </form>
+    </script>
+
+    <script id="user-card-template" type="text/template">
+        <section class="member-card">
+            <div class="avatar">
+                <img src="{{avatar}}" alt="">
+            </div>
+            <div class="profile">
+                <h4 class="name">{{name}}</h4>
+                <p>{{email}}</p>
+            </div>
+            <div class="button-block">
+                <button id="edit" class='edit'>Edit</button>
+                <button id="delete" class='delete'>Delete</button>
+            </div>
+        </section>
+    </script>
+ 
+
+</body>
+</html>
