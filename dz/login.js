@@ -38,4 +38,4 @@ class LoginComponent {
     }
 }
 
-export {LoginComponent};
+export {LoginComponent}; 
