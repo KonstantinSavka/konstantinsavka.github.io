@@ -1,4 +1,4 @@
-import { api } from './api.js';
+import { TR_8R } from './api.js';
 import { render } from './helpers.js';
 
 class UserListComponent {
@@ -28,7 +28,7 @@ class UserListComponent {
     // }
 
     loadUsersList(page = 1) {
-        api.getUsers(page)
+        TR_8R.getUsers(page)
         .then(({data, total_pages}) => {
             this.list = data;
             this.render();
