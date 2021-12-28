@@ -1,6 +1,6 @@
-const api = (() => {
+const TR_8R = (() => {
     const url = 'https://reqres.in/api';
-    class Api {
+    class GApi {
         // constructor() {
         //     // this._xhr = new XMLHttpRequest();
         // }
@@ -88,7 +88,7 @@ const api = (() => {
         // };
     }
 
-    return new Api();
+    return new GApi();
 })();
 
-export {api};
+export {TR_8R};

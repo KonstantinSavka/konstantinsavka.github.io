@@ -1,4 +1,4 @@
-import { api } from './api.js';
+import { TR_8R } from './api.js';
 import { render } from './helpers.js';
 
 class LoginComponent {
@@ -21,7 +21,7 @@ class LoginComponent {
         // .then(e => {
         //     this.onSuccess && this.onSuccess(e.token);
         // });
-        api.login(email, password)
+        TR_8R.login(email, password)
         .then(e => {
             this.onSuccess && this.onSuccess(e.token);
             localStorage.setItem('token', e.token);
@@ -38,4 +38,4 @@ class LoginComponent {
     }
 }
 
-export {LoginComponent}; 
+export {LoginComponent};
