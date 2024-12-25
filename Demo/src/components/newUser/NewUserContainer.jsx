@@ -4,6 +4,7 @@ import NewUser from "./NewUser";
 import {addNewUser, updateNewUserNameText} from "../../redux/newUserReducer";
 import {toggleIsFetching} from "../../redux/newUserReducer";
 import axios from "axios";
+import {compose} from "redux";
 
 const NewUserContainer = (props) => {
     const postUser = (text = props.newUserNameText) => {
@@ -25,5 +26,5 @@ const mapDispatchToProps = (state) => {
     }
 }
 
-export default connect(mapDispatchToProps, {updateNewUserNameText,
-    toggleIsFetching, addNewUser})(NewUserContainer)
+export default compose(connect(mapDispatchToProps, {updateNewUserNameText,
+    toggleIsFetching, addNewUser}))(NewUserContainer)

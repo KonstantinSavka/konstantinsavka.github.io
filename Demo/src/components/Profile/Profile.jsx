@@ -10,7 +10,6 @@ const Profile = (props) => {
         props.updateNewNameText(text)
     }
     const onAddUser = () => {
-        console.log(props)
         props.updateUser()
     }
 

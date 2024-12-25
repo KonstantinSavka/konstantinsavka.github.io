@@ -14,8 +14,8 @@ const User = (props) => {
 
             <div className='mb-2'>
                 <img
-                    // src={props.profile.avatar != null ? props.profile.avatar : 'https://banner2.cleanpng.com/20180622/tqt/aazen4lhc.webp'}
-                    src='https://banner2.cleanpng.com/20180622/tqt/aazen4lhc.webp'
+                    // src={props.profile.avatar != null ? props.profile.avatar : 'https://demo.promo///sk/mails_archive_3/newLucky/user.png'}
+                    src='https://demo.promo///sk/mails_archive_3/newLucky/user.png'
                     alt="" className='rounded-lg w-full object-cover'/>
             </div>
 

@@ -9,7 +9,6 @@ const NewUser = (props) => {
     }
     const onAddUser = () => {
         props.postUser()
-        console.log(props)
     }
 
     return (

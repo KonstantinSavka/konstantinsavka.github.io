@@ -11,6 +11,7 @@ import axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
 import {setDeleted} from "../../redux/profileReducer";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component {
 
@@ -82,11 +83,11 @@ let mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, {
+export default compose(connect(mapStateToProps, {
     setUsers,
     setPageSize,
     setCurrentPage,
     setTotalUsersCount,
     setDeleted,
     toggleIsFetching,
-})(UsersContainer)
+}))(UsersContainer)

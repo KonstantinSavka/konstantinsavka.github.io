@@ -34,7 +34,6 @@ const ProfileContainer = (props) => {
             props.setUserProfile(
                 response.data
             );
-
         })
     }, []);
 
