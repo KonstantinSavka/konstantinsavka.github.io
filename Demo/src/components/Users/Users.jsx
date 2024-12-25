@@ -10,7 +10,7 @@ let Users = (props) => {
     }
 
     return <div>
-        <h4 className="font-bold pb-2 mb-5 border-b border-gray-200">GET Demo</h4>
+        <h4 className="font-bold pb-2 mb-5 border-b border-gray-200">GET Demo s</h4>
         <div className='mb-2'>
             {pages.map((p, i) => {
                 return <span key={i} className={props.currentPage === p ? 'text-lg text-red-700 px-1 font-bold' : 'text-md text-gray px-1 cursor-pointer'} onClick={() => {
