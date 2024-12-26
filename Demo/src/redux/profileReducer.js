@@ -4,6 +4,7 @@ const
     UPDATE_NEW_NAME_TEXT = 'UPDATE_NEW_NAME_TEXT',
     UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE',
     SET_IS_DELETED = 'SET_IS_DELETED',
+    SET_SELECTED_USER = 'SET_SELECTED_USER',
     SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
@@ -11,6 +12,7 @@ let initialState = {
     isFetching: false,
     newNameText: '',
     isDeleted: false,
+    selectedUser: null,
 };
 
 const profileReducer = function(state = initialState, action) {
@@ -21,6 +23,12 @@ const profileReducer = function(state = initialState, action) {
             return {
                 ...state,
                 newNameText: action.newNameText
+            }
+
+        case SET_SELECTED_USER:
+            return {
+                ...state,
+                selectedUser: action.selectedUser
             }
 
         case TOGGLE_IS_FETCHING: {
@@ -67,6 +75,13 @@ export const toggleIsFetching = function(isFetching) {
     return {
         type: TOGGLE_IS_FETCHING,
         isFetching
+    }
+}
+
+export const setSelectedUser = function(selectedUser) {
+    return {
+        type: SET_SELECTED_USER,
+        selectedUser
     }
 }
 

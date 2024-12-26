@@ -1,5 +1,5 @@
 import profileReducer, {
-    deleteUser, setDeleted,
+    deleteUser, setDeleted, setSelectedUser,
     setUserProfile,
     toggleIsFetching,
     updateNewNameText,
@@ -11,7 +11,15 @@ let state = {
     isFetching: false,
     newNameText: '',
     isDeleted: false,
+    selectedUser: null,
 };
+
+it('current user should be selected', ()=>{
+    let action = setSelectedUser(1)
+    let newState = profileReducer(state, action)
+
+    expect(newState.selectedUser).toBe(1)
+})
 
 it('name input should be updated', () => {
     let action = updateNewNameText('test');
