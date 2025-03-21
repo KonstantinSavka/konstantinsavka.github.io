@@ -10,7 +10,7 @@ import {Provider} from "react-redux";
 import axios from "axios";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
+console.log('new vers')
 root.render(
     <React.StrictMode>
         <HashRouter>
