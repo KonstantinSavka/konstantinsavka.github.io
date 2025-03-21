@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-
+console.log('new vers')
 const Nav = () => {
     return (<nav className='md:col-span-1 md:flex md:justify-end text-right'>
             <div className='text-sm mt-6 hidden md:block'>
