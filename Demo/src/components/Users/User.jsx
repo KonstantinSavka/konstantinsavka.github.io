@@ -3,9 +3,14 @@ import {NavLink} from "react-router-dom";
 
 const User = (props) => {
     const editable = props.editable;
+    const deletable = props.deletable;
 
     const setDeleted = () => {
         props.setDeleted()
+    }
+
+    const onDeleteUser = (id) => {
+        props.deleteUser(id)
     }
 
     return (
@@ -27,11 +32,25 @@ const User = (props) => {
                         </NavLink>
                         : ''
                 }
+                {
+                    deletable ?
+                        <button onClick={()=>{onDeleteUser(props.profile.id)}}
+                                className='inline-block px-2 py-1 bg-red-200 rounded-lg ml-2'>Delete
+                            User
+                        </button>
+                        : ''
+                }
                 <div>
                     <div className='font-bold'>{props.profile.name}</div>
                 </div>
                 <div>
-                    <div className='text-gray-500 text-sm'>{props.profile.createdAt}</div>
+                    <div className='text-gray-500 text-sm'>{props.profile.note}</div>
+                </div>
+                <div>
+                    <div className='text-gray-500 text-sm'>{props.profile.email}</div>
+                </div>
+                <div>
+                    <div className='text-gray-500 text-sm'>{props.profile.phoneNumber}</div>
                 </div>
             </div>
         </div>

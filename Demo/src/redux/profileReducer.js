@@ -2,6 +2,9 @@ const
     DELETE_USER = 'DELETE_USER',
     TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING',
     UPDATE_NEW_NAME_TEXT = 'UPDATE_NEW_NAME_TEXT',
+    UPDATE_NEW_NOTE_TEXT = 'UPDATE_NEW_NOTE_TEXT',
+    UPDATE_NEW_EMAIL_TEXT = 'UPDATE_NEW_EMAIL_TEXT',
+    UPDATE_NEW_PHONE_NUMBER_TEXT = 'UPDATE_NEW_PHONE_NUMBER_TEXT',
     UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE',
     SET_IS_DELETED = 'SET_IS_DELETED',
     SET_SELECTED_USER = 'SET_SELECTED_USER',
@@ -11,6 +14,9 @@ let initialState = {
     userProfile: null,
     isFetching: false,
     newNameText: '',
+    newNoteText: '',
+    newEmailText: '',
+    newPhoneNumberText: '',
     isDeleted: false,
     selectedUser: null,
 };
@@ -23,6 +29,24 @@ const profileReducer = function(state = initialState, action) {
             return {
                 ...state,
                 newNameText: action.newNameText
+            }
+
+        case UPDATE_NEW_NOTE_TEXT:
+            return {
+                ...state,
+                newNoteText: action.newNoteText
+            }
+
+        case UPDATE_NEW_EMAIL_TEXT:
+            return {
+                ...state,
+                newEmailText: action.newEmailText
+            }
+
+        case UPDATE_NEW_PHONE_NUMBER_TEXT:
+            return {
+                ...state,
+                newPhoneNumberText: action.newPhoneNumberText
             }
 
         case SET_SELECTED_USER:
@@ -63,6 +87,9 @@ const profileReducer = function(state = initialState, action) {
                 ...state,
                 userProfile: {...state.userProfile, name: state.newNameText},
                 newNameText: '',
+                newNoteText: '',
+                newEmailText: '',
+                newPhoneNumberText: '',
             }
         }
 
@@ -95,6 +122,27 @@ export const updateNewNameText = function(newNameText) {
     return {
         type: UPDATE_NEW_NAME_TEXT,
         newNameText
+    }
+}
+
+export const updateNewNoteText = function(newNoteText) {
+    return {
+        type: UPDATE_NEW_NOTE_TEXT,
+        newNoteText
+    }
+}
+
+export const updateNewEmailText = function(newEmailText) {
+    return {
+        type: UPDATE_NEW_EMAIL_TEXT,
+        newEmailText
+    }
+}
+
+export const updateNewPhoneNumberText = function(newPhoneNumberText) {
+    return {
+        type: UPDATE_NEW_PHONE_NUMBER_TEXT,
+        newPhoneNumberText
     }
 }
 

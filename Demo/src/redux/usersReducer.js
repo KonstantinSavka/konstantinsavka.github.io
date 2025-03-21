@@ -1,5 +1,6 @@
 const
     SET_USERS = 'SET_USERS',
+    DELETE_USER = 'DELETE_USER',
     SET_PAGE_SIZE = 'SET_PAGE_SIZE',
     SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT',
     TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING',
@@ -19,6 +20,9 @@ const usersReducer = function(state = initialState, action) {
 
         case SET_USERS: {
             return {...state, users: action.users}
+        }
+        case DELETE_USER : {
+            return {...state}
         }
         case SET_CURRENT_PAGE: {
             return {
@@ -62,6 +66,12 @@ export const setUsers = function(users) {
         users
     }
 }
+
+export const deleteUser = function() {
+    return {
+        type: DELETE_USER,
+    }
+};
 
 export const setPageSize = function(pageSize) {
     return {

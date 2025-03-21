@@ -24,7 +24,8 @@ let Users = (props) => {
             {
                 props.users.map(u => {
                     const deleted = props.setDeleted;
-                    return <User key={u.id} profile={u} setDeleted={deleted} editable={true}/>
+                    const deleteUser = props.deleteUser;
+                    return <User key={u.id} profile={u} deleteUser={deleteUser} setDeleted={deleted} deletable={true} editable={true}/>
                 })
             }
         </div>

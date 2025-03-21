@@ -3,6 +3,7 @@ import {
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
+    deleteUser,
     setPageSize,
     toggleIsFetching,
 } from "../../redux/usersReducer";
@@ -57,13 +58,31 @@ class UsersContainer extends React.Component {
         })
     };
 
+    deleteUser = (id) => {
+        axios.delete(`https://67693632cbf3d7cefd39fadc.mockapi.io/users/${id}`)
+            .then((response)=>{
+                this.props.deleteUser() //нужен ли этот экшн
+                this.props.setTotalUsersCount(
+                    this.props.totalUsersCount - 1
+                )
+            })
+            .then(()=>{
+                if(!(this.props.users.length - 1)) {
+                    this.onPageChanged(Math.ceil(this.props.totalUsersCount / this.props.pageSize))
+                } else {
+                    this.onPageChanged(this.props.currentPage)
+                }
+            })
+    }
+
     render() {
         return <>
             {this.props.isFetching? <Preloader /> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
                       pageSize={this.props.pageSize}
                       currentPage={this.props.currentPage}
-                        setDeleted={this.props.setDeleted}
+                      setDeleted={this.props.setDeleted}
+                      deleteUser={this.deleteUser}
                       users={this.props.users}
                       onPageChanged={this.onPageChanged}/>
         </>
@@ -89,5 +108,6 @@ export default compose(connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     setDeleted,
+    deleteUser,
     toggleIsFetching,
 }))(UsersContainer)

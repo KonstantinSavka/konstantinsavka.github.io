@@ -6,12 +6,12 @@ import {deleteUser, setSelectedUser, setUserProfile, updateUserProfile} from "..
 import customWithRouter from "../common/customWithRouter";
 import {toggleIsFetching} from "../../redux/profileReducer";
 import {compose} from "redux";
-import {updateNewNameText} from "../../redux/profileReducer";
+import {updateNewNameText, updateNewNoteText, updateNewEmailText, updateNewPhoneNumberText} from "../../redux/profileReducer";
 
 const ProfileContainer = (props) => {
-    const updateUserProfile = (text = props.newNameText, id = props.profile.id) => {
+    const updateUserProfile = (name = props.newNameText, note = props.newNoteText, email = props.newEmailText, phoneNumber = props.newPhoneNumberText, id = props.profile.id) => {
         props.toggleIsFetching(true);
-        axios.put(`https://67693632cbf3d7cefd39fadc.mockapi.io/users/${id}`, {name: text})
+        axios.patch(`https://67693632cbf3d7cefd39fadc.mockapi.io/users/${id}`, {name, note, email, phoneNumber})
             .then((response)=>{
                 props.toggleIsFetching(false);
                 props.updateUserProfile()
@@ -37,10 +37,16 @@ const ProfileContainer = (props) => {
     }, []);
 
     return <Profile updateNewNameText={props.updateNewNameText}
+                    updateNewNoteText={props.updateNewNoteText}
+                    updateNewEmailText={props.updateNewEmailText}
+                    updateNewPhoneNumberText={props.updateNewPhoneNumberText}
                     updateUser={updateUserProfile}
                     deleteUser={deleteUser}
                     isDeleted={props.isDeleted}
                     newNameText={props.newNameText}
+                    newNoteText={props.newNoteText}
+                    newEmailText={props.newEmailText}
+                    newPhoneNumberText={props.newPhoneNumberText}
                     profile={props.profile} />
 
 };
@@ -51,6 +57,9 @@ let mapStateToProps = (state) => {
         profile: state.profilePage.userProfile,
         isFetching: state.profilePage.isFetching,
         newNameText: state.profilePage.newNameText,
+        newNoteText: state.profilePage.newNoteText,
+        newEmailText: state.profilePage.newEmailText,
+        newPhoneNumberText: state.profilePage.newPhoneNumberText,
         selectedUser: state.profilePage.selectedUser
     }
 };
@@ -60,5 +69,8 @@ export default compose(connect(mapStateToProps, {setUserProfile,
         deleteUser,
         toggleIsFetching,
         setSelectedUser,
-        updateNewNameText}),
+        updateNewNameText,
+        updateNewNoteText,
+        updateNewEmailText,
+        updateNewPhoneNumberText}),
 customWithRouter)(ProfileContainer)

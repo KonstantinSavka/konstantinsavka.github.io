@@ -5,11 +5,26 @@ import User from "../Users/User";
 
 const Profile = (props) => {
     let newProfileNameElement = React.useRef(0);
+    let newProfileNoteElement = React.useRef(0);
+    let newProfileEmailElement = React.useRef(0);
+    let newProfilePhoneNumberElement = React.useRef(0);
     let onNameChange = function() {
         let text = newProfileNameElement.current.value;
         props.updateNewNameText(text)
     }
-    const onAddUser = () => {
+    let onNoteChange = function() {
+        let text = newProfileNoteElement.current.value;
+        props.updateNewNoteText(text)
+    }
+    let onEmailChange = function() {
+        let text = newProfileEmailElement.current.value;
+        props.updateNewEmailText(text)
+    }
+    let onPhoneNumberChange = function() {
+        let text = newProfilePhoneNumberElement.current.value;
+        props.updateNewPhoneNumberText(text)
+    }
+    const onUpdateUser = () => {
         props.updateUser()
     }
 
@@ -31,18 +46,28 @@ const Profile = (props) => {
             <div>
                 <div className='flex items-start'>
                     <User profile={props.profile} editable={false}/>
-                    <div className='flex flex-col'>
-                        <div className='flex mb-2'>
-                        <textarea placeholder='New name' className='p-2 resize-none rounded-lg' rows='1'
+                    <div className='flex flex-col w-3/5'>
+                        <textarea placeholder='New name' className='p-2 resize-none rounded-lg mb-3' rows='1'
                                   onChange={onNameChange}
                                   ref={newProfileNameElement}
                                   value={props.newNameText}/>
-                            <button onClick={onAddUser}
-                                    className='inline-block px-2 py-1 bg-green-200 rounded-lg ml-2'>Update User
-                            </button>
-                        </div>
+                        <textarea placeholder='New note' className='p-2 resize-none rounded-lg mb-3' rows='1'
+                                  onChange={onNoteChange}
+                                  ref={newProfileNoteElement}
+                                  value={props.newNoteText}/>
+                        <textarea placeholder='New email' className='p-2 resize-none rounded-lg mb-3' rows='1'
+                                  onChange={onEmailChange}
+                                  ref={newProfileEmailElement}
+                                  value={props.newEmailText}/>
+                        <textarea placeholder='New phone number' className='p-2 resize-none rounded-lg mb-5' rows='1'
+                                  onChange={onPhoneNumberChange}
+                                  ref={newProfilePhoneNumberElement}
+                                  value={props.newPhoneNumberText}/>
+                        <button onClick={onUpdateUser}
+                                className='inline-block px-2 py-2 bg-green-200 rounded-lg mb-3'>Update User
+                        </button>
                         <button onClick={onDeleteUser}
-                                className='inline-block px-2 py-1 bg-red-200 rounded-lg'>Delete
+                                className='inline-block px-2 py-2 bg-red-200 rounded-lg'>Delete
                             User
                         </button>
                     </div>
