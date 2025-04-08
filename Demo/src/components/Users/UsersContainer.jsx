@@ -13,6 +13,7 @@ import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
 import {setDeleted} from "../../redux/profileReducer";
 import {compose} from "redux";
+import {toggleIsOpen} from "../../redux/popupReducer";
 
 class UsersContainer extends React.Component {
 
@@ -84,6 +85,8 @@ class UsersContainer extends React.Component {
                       setDeleted={this.props.setDeleted}
                       deleteUser={this.deleteUser}
                       users={this.props.users}
+                      // popup={this.props.popup}
+                      toggleIsOpen={this.props.toggleIsOpen}
                       onPageChanged={this.onPageChanged}/>
         </>
     }
@@ -97,6 +100,7 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        // popup: state.popup.isOpen,
         usersPerPage: state.usersPage.usersPerPage
     }
 };
@@ -110,4 +114,5 @@ export default compose(connect(mapStateToProps, {
     setDeleted,
     deleteUser,
     toggleIsFetching,
+    toggleIsOpen,
 }))(UsersContainer)

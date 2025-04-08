@@ -1,6 +1,7 @@
 import React from 'react';
 import Preloader from "../common/preloader/Preloader";
 import User from "../Users/User";
+import PopupContainer from "../common/popup/PopupContainer";
 
 
 const Profile = (props) => {
@@ -29,7 +30,7 @@ const Profile = (props) => {
     }
 
     const onDeleteUser = () => {
-        props.deleteUser()
+        props.toggleIsOpen(true)
     }
 
     if(props.isDeleted) {
@@ -42,6 +43,7 @@ const Profile = (props) => {
 
     return (
         <>
+            {props.popup && <PopupContainer deletePopup={true} deleteUser={props.deleteUser} userName={props.profile.name} />}
             <h4 className="font-bold pb-2 mb-5 border-b border-gray-200">PUT/DELETE Demo</h4>
             <div>
                 <div className='flex items-start'>

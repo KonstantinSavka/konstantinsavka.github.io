@@ -7,7 +7,7 @@ const
     UPDATE_NEW_PHONE_NUMBER_TEXT = 'UPDATE_NEW_PHONE_NUMBER_TEXT',
     UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE',
     SET_IS_DELETED = 'SET_IS_DELETED',
-    SET_SELECTED_USER = 'SET_SELECTED_USER',
+    // SET_SELECTED_USER = 'SET_SELECTED_USER',
     SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
@@ -18,7 +18,7 @@ let initialState = {
     newEmailText: '',
     newPhoneNumberText: '',
     isDeleted: false,
-    selectedUser: null,
+    // selectedUser: null,
 };
 
 const profileReducer = function(state = initialState, action) {
@@ -49,11 +49,11 @@ const profileReducer = function(state = initialState, action) {
                 newPhoneNumberText: action.newPhoneNumberText
             }
 
-        case SET_SELECTED_USER:
-            return {
-                ...state,
-                selectedUser: action.selectedUser
-            }
+        // case SET_SELECTED_USER:
+        //     return {
+        //         ...state,
+        //         selectedUser: action.selectedUser
+        //     }
 
         case TOGGLE_IS_FETCHING: {
             return {
@@ -85,7 +85,6 @@ const profileReducer = function(state = initialState, action) {
         case UPDATE_USER_PROFILE: {
             return {
                 ...state,
-                userProfile: {...state.userProfile, name: state.newNameText},
                 newNameText: '',
                 newNoteText: '',
                 newEmailText: '',
@@ -105,12 +104,12 @@ export const toggleIsFetching = function(isFetching) {
     }
 }
 
-export const setSelectedUser = function(selectedUser) {
-    return {
-        type: SET_SELECTED_USER,
-        selectedUser
-    }
-}
+// export const setSelectedUser = function(selectedUser) {
+//     return {
+//         type: SET_SELECTED_USER,
+//         selectedUser
+//     }
+// }
 
 export const deleteUser = function() {
     return {
@@ -146,10 +145,9 @@ export const updateNewPhoneNumberText = function(newPhoneNumberText) {
     }
 }
 
-export const updateUserProfile = function(newName) {
+export const updateUserProfile = function() {
     return {
         type: UPDATE_USER_PROFILE,
-        newName
     }
 }
 

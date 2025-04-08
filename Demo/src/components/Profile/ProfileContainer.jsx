@@ -7,14 +7,25 @@ import customWithRouter from "../common/customWithRouter";
 import {toggleIsFetching} from "../../redux/profileReducer";
 import {compose} from "redux";
 import {updateNewNameText, updateNewNoteText, updateNewEmailText, updateNewPhoneNumberText} from "../../redux/profileReducer";
+import {toggleIsOpen} from "../../redux/popupReducer";
 
 const ProfileContainer = (props) => {
-    const updateUserProfile = (name = props.newNameText, note = props.newNoteText, email = props.newEmailText, phoneNumber = props.newPhoneNumberText, id = props.profile.id) => {
+    const updateUserProfile = (id = props.profile.id) => {
         props.toggleIsFetching(true);
-        axios.patch(`https://67693632cbf3d7cefd39fadc.mockapi.io/users/${id}`, {name, note, email, phoneNumber})
-            .then((response)=>{
-                props.toggleIsFetching(false);
-                props.updateUserProfile()
+        let updatedData = {name: props.newNameText, note: props.newNoteText, email: props.newEmailText, phoneNumber: props.newPhoneNumberText};
+            for(let info in updatedData) {
+                if(!Boolean(updatedData[info])) updatedData[info] = props.profile[info]
+            }
+        axios.put(`https://67693632cbf3d7cefd39fadc.mockapi.io/users/${id}`, updatedData)
+            .then(()=>{
+                axios.get(`https://67693632cbf3d7cefd39fadc.mockapi.io/users/${id}`).then(response => {
+                    props.setUserProfile(
+                        response.data
+                    );
+                    props.updateUserProfile()
+                    props.toggleIsFetching(false);
+                    props.toggleIsOpen(true)
+                })
             })
     }
 
@@ -34,6 +45,10 @@ const ProfileContainer = (props) => {
                 response.data
             );
         })
+
+        return ()=>{
+            props.toggleIsOpen(false);
+        }
     }, []);
 
     return <Profile updateNewNameText={props.updateNewNameText}
@@ -47,6 +62,8 @@ const ProfileContainer = (props) => {
                     newNoteText={props.newNoteText}
                     newEmailText={props.newEmailText}
                     newPhoneNumberText={props.newPhoneNumberText}
+                    popup={props.popup}
+                    toggleIsOpen={props.toggleIsOpen}
                     profile={props.profile} />
 
 };
@@ -60,7 +77,7 @@ let mapStateToProps = (state) => {
         newNoteText: state.profilePage.newNoteText,
         newEmailText: state.profilePage.newEmailText,
         newPhoneNumberText: state.profilePage.newPhoneNumberText,
-        selectedUser: state.profilePage.selectedUser
+        popup: state.popup.isOpen
     }
 };
 
@@ -68,7 +85,7 @@ export default compose(connect(mapStateToProps, {setUserProfile,
         updateUserProfile,
         deleteUser,
         toggleIsFetching,
-        setSelectedUser,
+        toggleIsOpen,
         updateNewNameText,
         updateNewNoteText,
         updateNewEmailText,
