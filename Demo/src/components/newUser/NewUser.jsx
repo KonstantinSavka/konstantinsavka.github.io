@@ -1,5 +1,6 @@
 import React from "react";
 import Preloader from "../common/preloader/Preloader";
+import PopupContainer from "../common/popup/PopupContainer";
 
 const NewUser = (props) => {
     let newUserNameElement = React.useRef(0);
@@ -28,6 +29,7 @@ const NewUser = (props) => {
 
     return (
         <>
+            {props.popup ? <PopupContainer /> : null}
             <h4 className="font-bold pb-2 mb-5 border-b border-gray-200">POST Demo</h4>
             {props.isFetching ? <Preloader/> : null}
             <div className='flex flex-col w-1/2'>

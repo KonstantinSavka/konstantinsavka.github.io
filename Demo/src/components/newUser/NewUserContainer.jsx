@@ -5,6 +5,8 @@ import {addNewUser, updateNewUserNameText, updateNewUserNoteText, updateNewUserE
 import {toggleIsFetching} from "../../redux/newUserReducer";
 import axios from "axios";
 import {compose} from "redux";
+import {toggleIsOpen, setMessage, setPopupType} from "../../redux/popupReducer";
+
 
 const NewUserContainer = (props) => {
     const postUser = (name = props.newUserNameText, note = props.newUserNoteText, email = props.newUserEmailText, phoneNumber = props.newUserPhoneNumberText) => {
@@ -14,9 +16,19 @@ const NewUserContainer = (props) => {
                 props.toggleIsFetching(false);
                 props.addNewUser()
             })
+            .then(()=>{
+            props.setPopupType('NOTIFICATION')
+            props.setMessage('User created')
+            props.toggleIsOpen(true)
+        })
     }
 
-    return <NewUser {...props} postUser={postUser} />
+    return <NewUser {...props}
+                    postUser={postUser}
+                    toggleIsOpen={props.toggleIsOpen}
+                    setPopupType={props.setPopupType}
+                    popup={props.popup}
+    />
 }
 
 const mapDispatchToProps = (state) => {
@@ -25,9 +37,17 @@ const mapDispatchToProps = (state) => {
         newUserNoteText: state.newUser.newUserNoteText,
         newUserEmailText: state.newUser.newUserEmailText,
         newUserPhoneNumberText: state.newUser.newUserPhoneNumberText,
-        isFetching: state.newUser.isFetching
+        isFetching: state.newUser.isFetching,
+        popup: state.popup.isOpen
     }
 }
 
-export default compose(connect(mapDispatchToProps, {updateNewUserNameText, updateNewUserNoteText, updateNewUserEmailText, updateNewUserPhoneNumberText,
-    toggleIsFetching, addNewUser}))(NewUserContainer)
+export default compose(connect(mapDispatchToProps, {updateNewUserNameText,
+    updateNewUserNoteText,
+    updateNewUserEmailText,
+    updateNewUserPhoneNumberText,
+    toggleIsFetching,
+    toggleIsOpen,
+    setMessage,
+    setPopupType,
+    addNewUser}))(NewUserContainer)

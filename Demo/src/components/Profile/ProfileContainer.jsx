@@ -7,7 +7,7 @@ import customWithRouter from "../common/customWithRouter";
 import {toggleIsFetching} from "../../redux/profileReducer";
 import {compose} from "redux";
 import {updateNewNameText, updateNewNoteText, updateNewEmailText, updateNewPhoneNumberText} from "../../redux/profileReducer";
-import {toggleIsOpen} from "../../redux/popupReducer";
+import {toggleIsOpen, setUserName, setUserId, setMessage, setPopupType} from "../../redux/popupReducer";
 
 const ProfileContainer = (props) => {
     const updateUserProfile = (id = props.profile.id) => {
@@ -24,9 +24,15 @@ const ProfileContainer = (props) => {
                     );
                     props.updateUserProfile()
                     props.toggleIsFetching(false);
-                    props.toggleIsOpen(true)
                 })
-            })
+            }).then(()=>{
+                props.setPopupType('NOTIFICATION')
+                props.setMessage('User updated')
+                props.toggleIsOpen(true)
+                // setTimeout(()=>{
+                //     props.toggleIsOpen(false)
+                // }, 2000)
+        })
     }
 
     const deleteUser = (id = props.profile.id) => {
@@ -35,7 +41,14 @@ const ProfileContainer = (props) => {
             .then((response)=>{
                 props.toggleIsFetching(false);
                 props.deleteUser()
-            })
+            }).then(()=>{
+            props.setPopupType('NOTIFICATION')
+            props.setMessage('User Deleted')
+            props.toggleIsOpen(true)
+            // setTimeout(()=>{
+            //     props.toggleIsOpen(false)
+            // }, 2000)
+        })
     }
 
     useEffect(() => {
@@ -63,7 +76,11 @@ const ProfileContainer = (props) => {
                     newEmailText={props.newEmailText}
                     newPhoneNumberText={props.newPhoneNumberText}
                     popup={props.popup}
+                    isFetching={props.isFetching}
                     toggleIsOpen={props.toggleIsOpen}
+                    setUserName={props.setUserName}
+                    setUserId={props.setUserId}
+                    setPopupType={props.setPopupType}
                     profile={props.profile} />
 
 };
@@ -86,6 +103,10 @@ export default compose(connect(mapStateToProps, {setUserProfile,
         deleteUser,
         toggleIsFetching,
         toggleIsOpen,
+        setUserName,
+        setUserId,
+        setMessage,
+        setPopupType,
         updateNewNameText,
         updateNewNoteText,
         updateNewEmailText,

@@ -12,10 +12,11 @@ const User = (props) => {
 
     const onDeleteUser = (id) => {
         // props.deleteUser(id)
+        props.setPopupType('DELETE')
+        props.setUserId(props.profile.id)
+        props.setUserName(props.profile.name)
         props.toggleIsOpen(true)
     }
-
-    console.log(`${props.profile.name}`, 'mounted')
 
     return (
         <>

@@ -9,7 +9,11 @@ const PopupContainer = (props) => {
 
 let mapStateToProps = (state) => {
     return {
-        isOpen: state.popup.isOpen
+        isOpen: state.popup.isOpen,
+        userName: state.popup.userName,
+        userId: state.popup.userId,
+        message: state.popup.message,
+        popupType: state.popup.popupType,
     }
 };
 

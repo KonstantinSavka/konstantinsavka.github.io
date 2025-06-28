@@ -1,9 +1,8 @@
 import React from "react";
 
 const Popup = (props) => {
-    console.log(props)
     const deleteUser = () => {
-        props?.deleteUser()
+        props?.deleteUser(props.userId)
         props.toggleIsOpen(false)
     }
 
@@ -11,13 +10,17 @@ const Popup = (props) => {
         props.toggleIsOpen(false)
     }
 
+    const closePopup = () => {
+        props.toggleIsOpen(false)
+    }
+
     return (() => {
         switch (true) {
-            case props?.deletePopup: {
+            case props?.popupType.DELETE: {
                 return (
                     <div className='w-full h-full bg-white/30 backdrop-blur-lg absolute left-0 top-0 pointer-events-none'>
                         <div className='bg-white shadow-md p-2 rounded-lg inline-flex w-60 flex-col justify-between absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto'>
-                            <div className='mb-5'>Are You sure want to delete user <span className='font-bold'>{props?.userName}</span> ?</div>
+                            <div className='mb-5'>Are You sure want to delete user <span className='font-bold'>{props.userName}</span> ?</div>
                             <button onClick={deleteUser}
                                     className='inline-block px-2 py-2 bg-green-200 rounded-lg mb-3'>Confirm
                             </button>
@@ -28,13 +31,26 @@ const Popup = (props) => {
                     </div>
                 )
             }
-            case props?.infoPopup: {
-                return (<div className='bg-white shadow-md p-2 rounded-lg inline-flex w-60 flex-col justify-between'>
-                    <div className='mb-5'>{props?.message}</div>
-                </div>)
+            case props?.popupType.NOTIFICATION: {
+                return (
+                    <div className='w-full h-full bg-white/30 backdrop-blur-lg absolute left-0 top-0 pointer-events-none'>
+                        <div className='bg-white shadow-md p-2 rounded-lg inline-flex w-60 flex-col justify-between absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto'>
+                            <button onClick={closePopup} className='block px-2 py-2'>
+                                <img style={{display: 'block'}} src="https://demo.promo///sk/landings/duy/close.png" alt=""/>
+                            </button>
+                            <div className='mb-5 text-center'>{props?.message}</div>
+                        </div>
+                    </div>
+                )
             }
             default: {
-                return (<div>Popup type not selected</div>)
+                return (
+                    <div className='w-full h-full bg-white/30 backdrop-blur-lg absolute left-0 top-0 pointer-events-none'>
+                        <div className='bg-white shadow-md p-2 rounded-lg inline-flex w-60 flex-col justify-between absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto'>
+                            <div className='mb-5'>Popup type not selected</div>
+                        </div>
+                    </div>
+                )
             }
         }
     })();

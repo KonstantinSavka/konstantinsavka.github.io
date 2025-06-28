@@ -30,20 +30,24 @@ const Profile = (props) => {
     }
 
     const onDeleteUser = () => {
+        props.setPopupType('DELETE')
+        props.setUserName(props.profile.name)
+        props.setUserId(props.profile.id)
         props.toggleIsOpen(true)
     }
 
     if(props.isDeleted) {
-        return <div className='font-bold'>User Deleted</div>
+        return <PopupContainer />
     }
 
-    if(!props.profile) {
+    if(!props.profile || props.isFetching) {
         return <Preloader />
     }
 
     return (
         <>
-            {props.popup && <PopupContainer deletePopup={true} deleteUser={props.deleteUser} userName={props.profile.name} />}
+            {props.popup ?
+                <PopupContainer deleteUser={(id)=>{props.deleteUser(id)}}  /> : null}
             <h4 className="font-bold pb-2 mb-5 border-b border-gray-200">PUT/DELETE Demo</h4>
             <div>
                 <div className='flex items-start'>
